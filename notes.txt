@@ -1,0 +1,19 @@
+https://socket.io/get-started/chat
+
+# create package.json
+A package. json is a JSON file that exists at the root of a 
+Javascript/Node project. It holds metadata relevant to the project and 
+it is used for managing the project's dependencies, scripts, version and 
+a whole lot more.
+
+
+# npm install express@4
+
+- install socket.io
+# npm install socket.io
+
+#create index.html
+
+
+
+what is package-lock.json ?
