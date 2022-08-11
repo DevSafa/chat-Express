@@ -20,6 +20,13 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
+// socket.io server keeps tracks to all connected socket
+// get all conencted socketes to the socket.io serevr ==> so get users
+const getVisitors = () => {
+  let clients = io.sockets.clients.connected;
+  let sockets = Object.values(clients)
+}
+
 // if there is any connection is called   (when we serve index.html a new connection is created |  create new socket)
 // when user connect to our server , the envent 'conenction' is called
 

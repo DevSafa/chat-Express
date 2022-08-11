@@ -14,6 +14,44 @@ a whole lot more.
 
 #create index.html
 
+get all connected sockets to my serevr (socket.io server)
+https://stackoverflow.com/questions/6563885/socket-io-how-do-i-get-a-list-of-connected-sockets-clients
+
+
+const ids = this.server.allSockets();
+console.log(ids);
+https://socket.io/docs/v3/rooms/
 
 
 what is package-lock.json ?
+
+
+
+
+//-------------------------------------------------
+  @SubscribeMessage('createMessage')
+ async create(@Body() createMessageDto : CreateMessageDto  , @ConnectedSocket() client : Socket) {
+    const message = await  this.messagesService.create(createMessageDto, client.id);
+    const ids = this.server.allSockets();
+    console.log(ids);
+    this.server.emit('message',createMessageDto); 
+    // return message;
+   // console.log(text)
+  }
+
+  @SubscribeMessage('findAllMessages')
+  async findAll() {
+    let clients = await this.server.allSockets;
+    let sockets = Object.values(clients)
+    console.log(sockets);
+    return this.messagesService.findAll();
+  }
+
+  @SubscribeMessage('join')
+ 
+  joinRoom(@MessageBody('name') name : string , @ConnectedSocket() client : Socket) {
+     
+    client.data.user = name
+    return this.messagesService.identify(name, client.id)
+
+  }
